@@ -1,2 +1,2 @@
-# Thinkpython same??
+# Thinkpython same or different??
 python exercises

@@ -15,7 +15,12 @@ def draw_grid(n,m):
 # parameters are rows and columns
 # u can try different rows and columns
 
-draw_grid(5,5)
+r=raw_input("enter the rows")
+r=int(r)
+c=raw_input("enter the  columns")
+c=int(c)
+draw_grid(r,c)
+
 
 
 

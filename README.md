@@ -1,0 +1,2 @@
+# Thinkpython 
+python exercises

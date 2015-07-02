@@ -7,7 +7,6 @@ def sorts(word):
     return a
 """  This one is too slow
 def all_anagrams(data):
-    
     for i in range(len(data)):
         #print i
         if(not sorts(data[i]) in box):
@@ -18,6 +17,8 @@ def all_anagrams(data):
                    else:    
                         box[sorts(data[i])]=[]
 """
+
+
 def all_anagrams(data):
     """Returns a dictionary of all possible anagrams"""
     box = {}
@@ -39,7 +40,7 @@ def order(box):
     for val in box.values():
         if(len(val) > 1):
             t.append((len(val), val))
-    t.sort(reverse = True)        
+    t.sort(reverse=True)        
     for x in t:
         print x
     return t        
@@ -47,19 +48,15 @@ def order(box):
 
 def ret_len(box, n):
     """returns a dictionary with only eight letter words"""
-    t={}
-    for x,y in box.items():
+    t = {}
+    for x, y in box.items():
         if(len(x) == n):
             t[x] = y
     #for x in t:
         #print x
     return t        
-    
-
 test = "dcba"
-
 #print sorts(test)
-
 crate = all_anagrams(data)
 #ordered=order(crate)
 eight = ret_len(crate, 8)

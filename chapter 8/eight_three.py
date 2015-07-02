@@ -1,4 +1,3 @@
 """the book wanted me to see its output"""
-
-fruit="apple"
+fruit = "apple"
 print fruit[:]

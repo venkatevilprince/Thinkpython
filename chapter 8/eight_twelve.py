@@ -13,13 +13,16 @@ def rotate_word(word,rotation):
             if char in val:
                 rotate=key+rotation
                 if(rotate>26):
-                    rotate=rotate-26
+                    rotate=rotate%26
+                if(rotate<0):
+                    rotate=rotate%26
                     
                 new_word=new_word+univ[rotate]
     return new_word            
 
 
-print rotate_word("melon",16)
+print rotate_word("melon",42)
+
 
 
 

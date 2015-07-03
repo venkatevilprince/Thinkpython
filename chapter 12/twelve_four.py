@@ -19,7 +19,7 @@ def all_anagrams(data):
 """
 
 
-def all_anagrams(data):
+def all_anagrams(data = data):
     """Returns a dictionary of all possible anagrams"""
     box = {}
 
@@ -54,11 +54,12 @@ def ret_len(box, n):
             t[x] = y
     #for x in t:
         #print x
-    return t        
-test = "dcba"
-#print sorts(test)
-crate = all_anagrams(data)
-#ordered=order(crate)
-eight = ret_len(crate, 8)
-order(eight)
-print "a"
+    return t
+if __name__ == "__main__":
+    test = "dcba"
+    #print sorts(test)
+    crate = all_anagrams(data)
+    #ordered=order(crate)
+    eight = ret_len(crate, 8)
+    order(eight)
+    print "a"

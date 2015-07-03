@@ -24,7 +24,7 @@ def bisect(item, find):
         #print first
     return found
 if __name__ == "__main__":
-    find = "catapult"
+    find = "i"
     data = read_words()
     #data=[2,2,2,2,4,5,6,7]
     start = time.time()

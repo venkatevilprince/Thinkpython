@@ -14,20 +14,20 @@ os.chdir(current)  #python file path set back to current to read other text file
 
 def typo_words(box):
     """ prints all the typo words and returns a list of the words"""
-    res=[]
-    count=0
-    total=0
+    res = []
+    count = 0
+    total = 0
     for x in box.keys():
-        total+=1
+        total += 1
         if x not in data:
             print x
-            count+=1
+            count += 1
             res.append(x)
-    return res,count,total
+    return res, count, total
 if __name__ == "__main__":
     book1 = "Catching Fire"
     bookhist1 = read_and_count(book1+".txt")
     book2 = "The Hunger Games"
     bookhist2 = read_and_count(book2+".txt")
     typo1, no_words, total = typo_words(bookhist1)
-    print no_words, "are typo words out of",total, "words"
+    print no_words, "are typo words out of", total, "words"

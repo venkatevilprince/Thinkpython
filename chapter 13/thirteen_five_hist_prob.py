@@ -7,6 +7,7 @@ hist = histogram("appple")
 
 
 def probablities(box):
+    """Returns a dictionary with probablities of letters"""
     prob = {}
     total = 0.0
     for x in box:

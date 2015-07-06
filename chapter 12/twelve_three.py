@@ -17,7 +17,7 @@ def make_histogram(s):
     hist = {}
     for x in s:
         if x in hist.keys():
-            hist[x] += 1
+            hist[x] + = 1
         else:
             hist[x] = 1
     return hist

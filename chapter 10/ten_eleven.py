@@ -12,7 +12,7 @@ def bisect(item, find):
     while first <= last and not found:
         mid = (first + last) // 2
         if(find == item[mid]):
-            found = item[mid]
+            found = mid
             #print item[mid]
         else:
             if item[mid] > find:

@@ -1,12 +1,24 @@
 import string
-print string.punctuation
-with open("content.txt") as f:
-    data = f.read()
-print data    
-for word in data.split():
+my_punc = string.punctuation + "1234567890"
+
+
+#print data    
+
+def strip_punc(word):
+    """Strips punctuations from the word and returns the word"""
+
     word = word.lower()
+    #print word
     s = ""
     for letter in word:
-        if letter not in string.punctuation:
+        if letter not in my_punc:
             s += letter
-    print s        
+    return s
+    
+if __name__ == "__main__":
+    with open("content.txt") as f:
+        data = f.read()
+    for word in data.split():
+        s = strip_punc(word)
+        if(s):
+            print s

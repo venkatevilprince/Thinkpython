@@ -1,4 +1,5 @@
 import string
+from thirteen_one_strippunc import *
 #print string.punctuation
 def read_and_count(txtfile):
     with open(txtfile) as f:
@@ -7,11 +8,7 @@ def read_and_count(txtfile):
     #print data    
     for word in data.split():
         word = word.lower()
-        s = ""
-        for letter in word:
-            if letter not in string.punctuation:
-                s += letter
-        #print s        
+        s = strip_punc(word)        
         if s in box:
             box[s] += 1
         else:

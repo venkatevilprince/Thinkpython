@@ -1,5 +1,6 @@
 from ten_ten import *
-data = read_words()
+if __name__ == "__main__":
+    data = read_words()
 
 
 def sorts(word):
@@ -19,7 +20,7 @@ def all_anagrams(data):
 """
 
 
-def all_anagrams(data = data):
+def all_anagrams(data):
     """Returns a dictionary of all possible anagrams"""
     box = {}
 
@@ -59,6 +60,8 @@ if __name__ == "__main__":
     test = "dcba"
     #print sorts(test)
     crate = all_anagrams(data)
+    #for key, val in crate.items():
+    #    print key, val
     #ordered=order(crate)
     eight = ret_len(crate, 8)
     order(eight)

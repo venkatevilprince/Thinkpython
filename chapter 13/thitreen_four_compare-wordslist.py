@@ -4,11 +4,11 @@ from thirteen_two_unique_words_book import *
 path = os.path.abspath(os.path.join(os.path.dirname(__file__), '../chapter 10'))
 sys.path.append(path)
 from ten_ten import *   #python import path set
-current=os.path.dirname(__file__)
-chapter10=os.path.normpath(os.path.join(path, '../chapter 10'))
+current =os.path.dirname(__file__)
+chapter10 = os.path.normpath(os.path.join(path, '../chapter 10'))
 #print chapter10
 os.chdir(chapter10)  # python file path set to chapter 10
-data=read_words()     
+data = read_words()     
 os.chdir(current)  #python file path set back to current to read other text files
 
 

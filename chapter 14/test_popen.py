@@ -14,7 +14,7 @@ print os.getcwd()
 
 p = subprocess.Popen(['python','fourteen_two.py'],stdout=subprocess.PIPE,shell = False)#, shell=True)
 
-print subprocess.Popen.stdout
+#print subprocess.Popen.stdout
 #proc = subprocess.Popen(['echo', '"Hello world!"'],shell=True,stdout=subprocess.PIPE)
 #print proc.communicate()[0]
 #subprocess.check_output('echo "hello world"', shell=True)

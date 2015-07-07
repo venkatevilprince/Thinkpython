@@ -1,3 +1,4 @@
+import sys
 def sed(pstr,rstr,fil1,fil2):
     """Reads a text file and replaces the pattern string
        with replacemnt dtring and writes it into a text file in append mode""" 
@@ -13,3 +14,4 @@ def sed(pstr,rstr,fil1,fil2):
     except:
         print "Error"
 sed("hello","jolly","fil1.txt","fil2.txt")
+print sys

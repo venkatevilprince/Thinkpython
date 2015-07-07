@@ -1,18 +1,16 @@
 import os
 import sys
+import subprocess
 
-sys.path.append("C:\\Windows\\system32\\")
-print(sys.path)
 
 def walk(dirname):
     """Finds the names of all files in dirname and its subdirectories.
-
     dirname: string name of directory
     """
     names = []
     for name in os.listdir(dirname):
         path = os.path.join(dirname, name)
-
+        #print path
         if os.path.isfile(path):
             names.append(path)
         else:
@@ -26,7 +24,10 @@ def compute_checksum(filename):
     filename: string
     """
     cmd = 'md5sum ' + filename
-    return pipe(cmd)
+    res, stat = pipe(cmd)
+    checksum, _ = res.split()
+    return checksum
+    
 
 
 def check_diff(name1, name2):
@@ -35,6 +36,7 @@ def check_diff(name1, name2):
     name1, name2: string filenames
     """
     cmd = 'diff %s %s' % (name1, name2)
+    #print "checking diff"
     return pipe(cmd)
 
 
@@ -45,9 +47,9 @@ def pipe(cmd):
 
     Returns (res, stat), the output of the subprocess and the exit status.
     """
-    fp = os.popen(cmd)
-    res = fp.read()
-    stat = fp.close()
+    fp = subprocess.Popen(cmd, stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+    res,stat =fp.communicate()
+    #print res,stat
     assert stat is None
     return res, stat
 
@@ -65,8 +67,8 @@ def compute_checksums(dirname, suffix):
     d = {}
     for name in names:
         if name.endswith(suffix):
-            res, stat = compute_checksum(name)
-            checksum, _ = res.split()
+            checksum = compute_checksum(name)
+            
 
             if checksum in d:
                 d[checksum].append(name)
@@ -83,7 +85,7 @@ def check_pairs(names):
     """
     for name1 in names:
         for name2 in names:
-            if name1 < name2:
+            if name1 < name2:  #this statement is to reduce redundant checks
                 res, stat = check_diff(name1, name2)
                 if res:
                     return False
@@ -109,5 +111,14 @@ def print_duplicates(d):
 
 
 if __name__ == '__main__':
-    d = compute_checksums(dirname='.', suffix='.py')
+    """Program to display all the redundant files in a directory using md5 and diff checks"""
+    d = compute_checksums(dirname='.', suffix='.py')  #tested with .py files (i dont have mp3 files)
     print_duplicates(d)
+    #nam = walk('.')
+    #print nam
+    #print os.listdir('.')
+    #print check_diff('same1.py','same2.py')
+    #c1 = compute_checksum('same1.py')
+    #c2 = compute_checksum('same2.py')
+    #pro = subprocess.Popen("diff same1.py test_popen.py", stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+    #print pro.communicate()

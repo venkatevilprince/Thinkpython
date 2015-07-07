@@ -47,8 +47,8 @@ def pipe(cmd):
 
     Returns (res, stat), the output of the subprocess and the exit status.
     """
-    fp = subprocess.Popen(cmd, stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
-    res,stat =fp.communicate()
+    fp = subprocess.Popen(cmd, stdout = subprocess.PIPE, stderr = subprocess.STDOUT)
+    res, stat = fp.communicate()
     #print res,stat
     assert stat is None
     return res, stat
@@ -112,13 +112,13 @@ def print_duplicates(d):
 
 if __name__ == '__main__':
     """Program to display all the redundant files in a directory using md5 and diff checks"""
-    d = compute_checksums(dirname='.', suffix='.py')  #tested with .py files (i dont have mp3 files)
+    d = compute_checksums(dirname='.', suffix = '.py')  #tested with .py files (i dont have mp3 files)
     print_duplicates(d)
-    #nam = walk('.')
-    #print nam
     #print os.listdir('.')
     #print check_diff('same1.py','same2.py')
     #c1 = compute_checksum('same1.py')
     #c2 = compute_checksum('same2.py')
     #pro = subprocess.Popen("diff same1.py test_popen.py", stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
     #print pro.communicate()
+    #nam = walk('.')
+    #print nam

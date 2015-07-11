@@ -80,22 +80,49 @@ class PokerHand(Hand):
             self.label = y
         else:
             self.label = "None"
-            
 
-        
+class Hist(dict):
+    def __init__(self):
+        self.count = {}
+class PokerDeck(Deck):
+    """Represents a deck of cards that can deal poker hands."""
+    def deal(deck, num_cards=5, num_hands=10):
+        #print "over ride"
+        hands = []
+        for i in range(num_hands):        
+            hand = PokerHand()
+            deck.move_cards(hand, num_cards)
+            hand.classify()
+            hands.append(hand)
+        return hands
         
         
 
 if __name__ == '__main__':
     # make a deck
-    deck = Deck()
-    deck.shuffle()
-
+    histogram = Hist()
+    print histogram
+    
     # deal the cards and classify the hands
-    for i in range(7):
-        hand = PokerHand("hand{}".format(i+1))
-        deck.move_cards(hand, 7)
-        hand.sort()
-        hand.classify()
-        print hand
-        print ''
+    for i in range(1000):
+        deck = PokerDeck()
+        deck.shuffle()
+        handlist = deck.deal(7, 7)
+        for h in handlist:
+        #    print h
+            if h.has_pairs():
+                histogram["pair"] = histogram.get("pair",0)+1
+            if h.has_two_pairs():
+                histogram["two pair"] = histogram.get("two pair",0)+1
+            if h.has_three_of_a_kind():
+                histogram["three of a kind"] = histogram.get("three of a kind",0)+1
+            
+                
+        
+        #hand.sort()
+        #hand.classify()
+        #print hand
+        #print ''
+    print "Out of 7000 hand samples"
+    print histogram
+    print 7000.0/histogram["pair"]

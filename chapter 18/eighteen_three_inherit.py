@@ -58,8 +58,8 @@ class Deck(object):
         for handcount in range(num_hands):
             hand_name = "hand" +str(handcount + 1)
             localhand = Hand(hand_name)
-            self.move_cards(localhand, 3)
-            print localhand
+            self.move_cards(localhand, cards_per_hand)
+            return localhand
 
     def deal_hands(self, num_of_hands, cards_per_hand):
         for hand_count in range(num_of_hands):
@@ -99,7 +99,8 @@ def main():
     hand1.add_card(card2)
     print hand1
     print deck1
-    deck1.deal(3, 3)
+    deck1.deal(7, 7)
+    
     #deck1.deal_hands(3, 3)
 
 

@@ -1,0 +1,53 @@
+<html> 
+  <head> 
+    <title>Ajax at work</title> 
+ 
+    <script language="javascript">
+      var XMLHttpRequestObject = false; 
+ console.log("1");	
+      if (window.XMLHttpRequest) {
+
+        XMLHttpRequestObject = new XMLHttpRequest();
+      } else if (window.ActiveXObject) {
+
+        XMLHttpRequestObject = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+ console.log("2");	
+      function getData(dataSource, divID) 
+      { console.log("3");	
+	  console.log(obj);	
+        if(XMLHttpRequestObject) {
+          var obj = document.getElementById(divID);
+          console.log(obj);		  
+          XMLHttpRequestObject.open("GET", dataSource); 
+ 
+          XMLHttpRequestObject.onreadystatechange = function() 
+          { 
+            if (XMLHttpRequestObject.readyState == 4 && 
+              XMLHttpRequestObject.status == 200) { 
+                obj.innerHTML = XMLHttpRequestObject.responseText; 
+            } 
+          } 
+ 
+          XMLHttpRequestObject.send(null); 
+        }
+      }
+	  getData('collegelist.txt', 'targetDiv');
+    </script>
+  </head> 
+ 
+  <body>
+ 
+    <h1>Fetching data with Ajax & javaScript</h1>
+ 
+    <form>
+      <input type="button" value="dei">
+        onclick = "getData('collegelist.txt', 'targetDiv')"> 
+    </input></form>
+ 
+    <div id="targetDiv">
+      <p>The fetched data will go here.</p> 
+    </div> 
+ 
+  </body> 
+</html>

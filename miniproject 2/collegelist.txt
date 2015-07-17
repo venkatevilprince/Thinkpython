@@ -1,0 +1,20 @@
+www.kcgcollege.ac.in,Contact Us,http://www.kcgcollege.ac.in/locationhome.shtml
+www.kcgcollege.ac.in,Web Mail,http://google.com/a/kcgcollege.com
+www.kcgcollege.ac.in,Home,http://www.kcgcollege.ac.in/index.shtml
+www.kcgcollege.ac.in,About KCG,http://www.kcgcollege.ac.in/aboutkctechhome.shtml
+www.kcgcollege.ac.in,Chairperson's Message,http://www.kcgcollege.ac.in/chairperson.shtml
+www.kcgcollege.ac.in,Director and CEO's Message,http://www.kcgcollege.ac.in/directorMessage.shtml
+www.kcgcollege.ac.in,Principal's Message,http://www.kcgcollege.ac.in/principalmessage.shtml
+www.kcgcollege.ac.in,About the College,http://www.kcgcollege.ac.in/aboutkc.shtml
+www.kcgcollege.ac.in,About the Group,http://www.kcgcollege.ac.in/aboutgroup.shtml
+www.kcgcollege.ac.in,Administration,http://www.kcgcollege.ac.in/administration.shtml
+www.kcgcollege.ac.in,Tribute to Our Founder,http://www.kcgcollege.ac.in/founderlegacy.shtml
+www.kcgcollege.ac.in,Objectives,http://www.kcgcollege.ac.in/objectives.shtml
+www.kcgcollege.ac.in,Quality Policy,http://www.kcgcollege.ac.in/qualitypolicy.shtml
+www.kcgcollege.ac.in,Why Study Here,http://www.kcgcollege.ac.in/whystudy.shtml
+www.kcgcollege.ac.in,Eligibility Criteria,http://www.kcgcollege.ac.in/eligibility.shtml
+www.kcgcollege.ac.in,Admission Procedure,http://www.kcgcollege.ac.in/admissionproc.shtml
+www.kcgcollege.ac.in,Facilities,http://www.kcgcollege.ac.in/facilitieshome.shtml
+www.kcgcollege.ac.in,Newsroom,http://www.kcgcollege.ac.in/newandevents.shtml
+www.kcgcollege.ac.in,Courses,http://www.kcgcollege.ac.in/courseshome.shtml
+www.kcgcollege.ac.in,B.E.Aeronautical Engineering,http://www.kcgcollege.ac.in/aero.shtml

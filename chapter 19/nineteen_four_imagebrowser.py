@@ -1,6 +1,6 @@
 import os, sys
 from swampy.Gui import *
-import Image as PIL      # to avoid name conflict with Tkinter
+from PIL import Image     
 import ImageTk
 class ImageBrowser(Gui):
     """An image browser that scans the files in a given directory and
@@ -23,6 +23,7 @@ class ImageBrowser(Gui):
             i += 1
             print i
             try:
+                print "trying"
                 self.show_image(files[i])
                 print files[i]
                 self.mainloop()
@@ -39,7 +40,7 @@ class ImageBrowser(Gui):
         """Use PIL to read the file and ImageTk to convert
         to a PhotoImage, which Tk can display.
         """
-        image = PIL.open(filename)
+        image = Image.open(filename)
         self.tkpi = ImageTk.PhotoImage(image)
         self.button.config(image=self.tkpi)
 

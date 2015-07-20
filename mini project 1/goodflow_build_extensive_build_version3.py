@@ -55,6 +55,10 @@ def get_label_url(data, college_url, csvname):
     for link in soup.find_all('a'):
         url = link.get('href')
         label = goodtext(link.get_text().strip())
+        if isinstance(label, unicode):
+            label = label.encode('ascii','ignore')
+        label = label.replace("\"","")
+        
         #print len(label)
         if len(label) > 0 and url != None  and '#' not in url  :
             if 'http' not in url:
@@ -66,7 +70,7 @@ def get_label_url(data, college_url, csvname):
                 
                 with open('{}.csv'.format(csvname), 'a') as write_label_url:
                     url_writer = csv.writer(write_label_url,delimiter=',',lineterminator='\n',
-                            quotechar='\"', quoting=csv.QUOTE_MINIMAL)
+                            quotechar='|', quoting=csv.QUOTE_NONE)
                     try:
                         url_writer.writerow((college_url,label,url))
                     except:

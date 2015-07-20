@@ -70,7 +70,11 @@ def get_label_url(data, college_url, csvname):
                 
                 with open('{}.csv'.format(csvname), 'a') as write_label_url:
                     url_writer = csv.writer(write_label_url,delimiter=',',lineterminator='\n',
+<<<<<<< HEAD
                             quotechar='|', quoting=csv.QUOTE_NONE)
+=======
+                            quotechar='\"', quoting=csv.QUOTE_NONE)
+>>>>>>> aa6c70ddc9aec3aa6af969b8ff35c7236c705d3b
                     try:
                         url_writer.writerow((college_url,label,url))
                     except:

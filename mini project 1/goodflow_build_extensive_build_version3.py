@@ -27,8 +27,8 @@ def get_url_data(web_url):
         end = time.time()
         print end - start
         time_con = end - start
-        #if time_con > 6:
-        #    print web_url
+        if time_con > 6:
+            print web_url
         queue.put((web_url,c))
     except urllib3.exceptions.InsecurePlatformWarning as e:
         print "InsecurePlatformWarning"
@@ -40,43 +40,35 @@ def get_url_data(web_url):
         queue.put((web_url,None))
         return
 
-def create_reader_dict(filename):
-    with open('{}.csv'.format(filename), 'r') as read_label_url:
+def create_reader_dict(parent):
+    with open('{}.csv'.format(parent), 'r') as read_label_url:
         url_reader = csv.reader(read_label_url, delimiter=',', quotechar='\"')
         for row in url_reader:
-            collegename,label,url = tuple(row)
+            label,url = tuple(row)
             label_url_dict[url] = label
             
 
-def get_label_url(data, college_url, csvname):
+def get_label_url(data,parent):
     soup = BeautifulSoup(data, "lxml")
     label_url = []
     local_dict = {}
     for link in soup.find_all('a'):
         url = link.get('href')
         label = goodtext(link.get_text().strip())
-        if isinstance(label, unicode):
-            label = label.encode('ascii','ignore')
-        label = label.replace("\"","")
-        
         #print len(label)
         if len(label) > 0 and url != None  and '#' not in url  :
             if 'http' not in url:
-                url = "http://" + college_url + '/' +url 
+                url = "http://" + parent + '/' +url 
             #print url
             #print label
             label_url.append((label,url))
             if url not in label_url_dict.keys():
                 
-                with open('{}.csv'.format(csvname), 'a') as write_label_url:
+                with open('{}.csv'.format(parent), 'a') as write_label_url:
                     url_writer = csv.writer(write_label_url,delimiter=',',lineterminator='\n',
-<<<<<<< HEAD
                             quotechar='|', quoting=csv.QUOTE_NONE)
-=======
-                            quotechar='\"', quoting=csv.QUOTE_NONE)
->>>>>>> aa6c70ddc9aec3aa6af969b8ff35c7236c705d3b
                     try:
-                        url_writer.writerow((college_url,label,url))
+                        url_writer.writerow((label,url))
                     except:
                         #strlabel = label.strip()
                         #print strlabel
@@ -84,30 +76,30 @@ def get_label_url(data, college_url, csvname):
                         #strlabel = strlabel.encode("utf-8")
                         #print type(strlabel),strlabel
                         #url_writer.writerow((strlabel,url))
-                label_url_dict[url] = label             
+                label_url_dict[url] = label
+                
     return label_url
 
 def goodtext(word):
     new_word = word.replace("-", "")
     return " ".join(new_word.split())
-
 def striphttp(url):
     new = url.replace("http://","")
     return new
     
-def website_scanner(college_url, filename):
-    with open('{}.csv'.format(college_list), 'a') as fil_create:
+def website_scanner(parent):
+    with open('{}.csv'.format(parent), 'a') as fil_create:
         print "created"
-    shelfr = shelve.open('{}.db'.format(filename), 'c')
+    shelfr = shelve.open('{}.db'.format(parent),'c')
     shelfr.close()
-    create_reader_dict(filename)
-    get_url_data(college_url)
+    create_reader_dict(parent)
+    get_url_data(parent)
     test_url,web_data = queue.get()
-    first_list = get_label_url(web_data, college_url, filename)
-    thread_control(first_list, college_url, filename)
-    
+    first_list = get_label_url(web_data,parent)
+    print first_list[0]
+    thread_control(first_list,parent)
 
-def thread_control(urls, college_url,filename):
+def thread_control(urls,parent):
     allthreads = []
     t_urls = []
     t_count = 32
@@ -116,7 +108,7 @@ def thread_control(urls, college_url,filename):
     while index < len(urls):
         threads = []
         while t_count > 0 and index < len(urls):
-            shelfr = shelve.open('{}.db'.format(filename))
+            shelfr = shelve.open('{}.db'.format(parent))
             label,url = tuple(urls[index])
             if url not in shelfr.keys():
                 print index
@@ -136,8 +128,8 @@ def thread_control(urls, college_url,filename):
             t_count += 1
             t_url,t_data = queue.get()
             if t_data:
-                t_lists = get_label_url(t_data,college_url,filename)
-                shelfw = shelve.open("{}.db".format(filename), 'c')
+                t_lists = get_label_url(t_data,parent)
+                shelfw = shelve.open("{}.db".format(parent), 'c')
                 shelfw[t_url] = 'present'
                 shelfw.close()
     return
@@ -147,10 +139,8 @@ def thread_control(urls, college_url,filename):
 #website_scanner(parent)
 #website_scanner(parent2)
 
-college_list = "collegelist"
-
 try:
-    with open(college_list+".txt", 'r') as fin:
+    with open("collegelist.txt", 'r') as fin:
         fin_data = fin.read()
         for line in fin_data.split():
             line = line.strip()
@@ -159,8 +149,7 @@ try:
             print line
             try:
                 test = requests.get("http://" + line)
-                #print "success"
-                website_scanner(line, college_list)
+                website_scanner(line)
             except:
                 print "website error"
 except:
